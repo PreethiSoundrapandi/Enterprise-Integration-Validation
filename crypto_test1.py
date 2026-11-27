@@ -1,15 +1,14 @@
 
 import hashlib
-from cryptography.hazmat.primitives.asymmetric import rsa
+from cryptography.hazmat.primitives.asymmetric import mlkem
 
 
-def generate_test_rsa_key():
-    """Generate an RSA-2048 key for QA testing only."""
-    private_key = rsa.generate_private_key(
-        public_exponent=65537,
-        key_size=2048,
-    )
-    print("RSA-2048 key generation: PASS")
+def generate_test_mlkem_key():
+    """Generate an ML-KEM-768 key for QA testing only."""
+    # RelixQ finding 01a21b4d-cb15-76a2-b370-5d76e5792ab5: RSA-2048 is
+    # quantum-vulnerable; key generation moved to ML-KEM-768 (FIPS 203).
+    private_key = mlkem.MLKEM768PrivateKey.generate()
+    print("ML-KEM-768 key generation: PASS")
     print("Private key generated in memory; not saved.")
     return private_key
 
@@ -24,5 +23,5 @@ def test_sha1_hashing():
 
 
 if __name__ == "__main__":
-    generate_test_rsa_key()
+    generate_test_mlkem_key()
     test_sha1_hashing()
