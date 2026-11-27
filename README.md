@@ -6,7 +6,7 @@ for testing source-control integration and security scanning.
 
 ## Test cases
 
-1. RSA-2048 key generation in `crypto_test1.py`
+1. ML-KEM-768 key generation in `crypto_test1.py`
 2. SHA-1 hashing in `crypto_test1.py`
 3. Hard-coded placeholder credentials in `config_test1.py`
 
